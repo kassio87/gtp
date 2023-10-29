@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <title>Gerenciador GTP</title>
+  <link href="https://gtp.webkasp.com.br/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://gtp.webkasp.com.br/css/contador.css">
+
+  <style>
+  .list-group-item {
+   
+    margin: 10px 0;
+}
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .position-sticky.pt-3.sidebar-sticky img {
+      margin-bottom: 30px;
+      padding: 0 30px;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="https://gtp.webkasp.com.br/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="dashboard.html">Admin</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Pesquisar"
+      aria-label="Search">
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="index.html">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <img src="img/logo-gpt.png" width="100%" margin="auto" alt="Conectar com o Google">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <h3>
+                <a class="nav-link active" aria-current="page" href="dashboard-admin.html">
+                  Dashboard
+                </a>
+              </h3>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="projetos-admin.html" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file align-text-bottom" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="visualizador-de-projetos-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="visualizar-tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gerenciar-usuarios-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users align-text-bottom" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Gerenciador Usuários
+              </a>
+            </li>
+
+           
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          
+           <div class="box-artigo">
+
+
+          <div class="box-contagem">
+            <h2 class="title">Total de Projetos</h2>
+            <span class="contagem">50</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Total de Tarefas</h2>
+            <span class="contagem">250</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Tarefas Pendentes</h2>
+            <span class="contagem">50</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Tarefas Concluidas</h2>
+            <span class="contagem">200</span>
+          </div>
+
+
+        </div><!--Box Artigo-->
+        
+ <div class="container">
+
+        <!-- Botão para abrir o modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
+            Adicionar
+        </button>
+
+        <!-- Modal de adicionar/editar projeto -->
+        <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="projectModalLabel">Adicionar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="project-name">Nome do Projeto:</label>
+                                        <input type="text" class="form-control" id="project-name" required>
+                                        <label for="project-description">Descrição do Projeto:</label>
+                                        <textarea class="form-control" id="project-description" rows="3"
+                                            required></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <input type="hidden" id="project-id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="save-project-btn">Salvar Projeto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        
+
+        <h2>Projetos</h2>
+        <div class="row" id="project-list">
+            <!-- Projetos adicionados dinamicamente serão exibidos aqui -->
+            <div id="project-0d4guvzxs" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title project-name">Projetos 1</h5>
+                        <p class="card-text project-description">Descrição de Projetos 1.</p><button type="button"
+                            class="btn btn-primary edit-project-btn">Editar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="project-0d4guvzxs" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title project-name">Projetos 2</h5>
+                        <p class="card-text project-description">Descrição de Projetos 2.</p><button type="button"
+                            class="btn btn-primary edit-project-btn">Editar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="project-0d4guvzxs" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title project-name">Projetos 3</h5>
+                        <p class="card-text project-description">Descrição de Projetos 3.</p><button type="button"
+                            class="btn btn-primary edit-project-btn">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var editingProjectId = null; // Variável para armazenar o ID do projeto em edição
+
+            // Função para adicionar um novo projeto ou editar um projeto existente
+            function addOrUpdateProject() {
+                var projectName = $('#project-name').val();
+                var projectDescription = $('#project-description').val();
+
+                if (editingProjectId !== null) {
+                    // Editar projeto existente
+                    var projectItem = $('#' + editingProjectId);
+                    projectItem.find('.project-name').text(projectName);
+                    projectItem.find('.project-description').text(projectDescription);
+                } else {
+                    // Adicionar novo projeto
+                    var projectId = 'project-' + Math.random().toString(36).substr(2, 9); // Gera um ID único para o projeto
+                    var projectItem = '<div id="' + projectId + '" class="col-md-4 mb-4">' +
+                        '<div class="card">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title project-name">' + projectName + '</h5>' +
+                        '<p class="card-text project-description">' + projectDescription + '</p>' +
+                        '<button type="button" class="btn btn-primary edit-project-btn">Editar</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+                    $('#project-list').append(projectItem);
+                }
+
+                // Limpar campos do formulário
+                $('#project-name').val('');
+                $('#project-description').val('');
+                editingProjectId = null;
+                $('#save-project-btn').text('Salvar Projeto');
+                $('#projectModal').modal('hide');
+            }
+
+            // Capturar evento de clique no botão "Salvar Projeto"
+            $('#save-project-btn').click(function () {
+                addOrUpdateProject();
+            });
+
+            // Capturar evento de clique no botão "Editar" de um projeto existente
+            $(document).on('click', '.edit-project-btn', function () {
+                var projectId = $(this).closest('.col-md-4').attr('id');
+                var projectName = $(this).siblings('.project-name').text();
+                var projectDescription = $(this).siblings('.project-description').text();
+
+                // Preencher campos do formulário com os valores do projeto a ser editado
+                $('#project-name').val(projectName);
+                $('#project-description').val(projectDescription);
+                editingProjectId = projectId;
+                $('#save-project-btn').text('Atualizar Projeto');
+                $('#projectModal').modal('show');
+            });
+        });
+    </script>
+
+
+     
+
+      </main>
+    </div>
+  </div>
+
+
+  <script src="https://gtp.webkasp.com.br/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"
+    integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+
+  <script src="https://gtp.webkasp.com.br/js/dashboard.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/jquery.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/script.js"></script>
+
+
+
+</body>
+
+</html>

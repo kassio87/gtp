@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <title>Gerenciador GTP</title>
+  <link href="https://gtp.webkasp.com.br/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://gtp.webkasp.com.br/css/contador.css">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .position-sticky.pt-3.sidebar-sticky img {
+      margin-bottom: 30px;
+      padding: 0 30px;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="https://gtp.webkasp.com.br/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="dashboard.html">Admin</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Pesquisar"
+      aria-label="Search">
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="index.html">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <img src="img/logo-gpt.png" width="100%" margin="auto" alt="Conectar com o Google">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <h3>
+                <a class="nav-link active" aria-current="page" href="dashboard-admin.html">
+                  Dashboard
+                </a>
+              </h3>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projetos-admin.html" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file align-text-bottom" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="visualizador-de-projetos-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="visualizar-tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gerenciar-usuarios-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users align-text-bottom" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Gerenciador Usuários
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        
+
+
+        <div class="box-artigo">
+
+
+          <div class="box-contagem">
+            <h2 class="title">Total de Projetos</h2>
+            <span class="contagem">50</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Total de Tarefas</h2>
+            <span class="contagem">250</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Tarefas Pendentes</h2>
+            <span class="contagem">50</span>
+          </div>
+
+          <div class="box-contagem">
+            <h2 class="title">Tarefas Concluidas</h2>
+            <span class="contagem">200</span>
+          </div>
+
+
+        </div><!--Box Artigo-->
+
+<div class="container mt-5">
+  <h1>Lista de Tarefas</h1>
+
+  <ul class="list-group mt-3" id="taskList">
+    <li class="list-group-item">
+      tarefas 1
+      <span class="badge bg-primary">Usuário 1</span>
+      <span class="badge bg-info">Projeto 1</span>
+      <span class="badge bg-success">Concluída</span>
+      <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-name="tarefas 1" data-task-status="Concluída" data-task-user="Usuário 1" data-task-project="Projeto 1">
+        Editar
+      </button>
+    </li>
+    <li class="list-group-item">
+      tarefas 2
+      <span class="badge bg-primary">Usuário 2</span>
+      <span class="badge bg-info">Projeto 2</span>
+      <span class="badge bg-success">Concluída</span>
+      <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-name="tarefas 2" data-task-status="Concluída" data-task-user="Usuário 2" data-task-project="Projeto 2">
+        Editar
+      </button>
+    </li>
+    <li class="list-group-item">
+      tarefas 3
+      <span class="badge bg-primary">Usuário 3</span>
+      <span class="badge bg-info">Projeto 3</span>
+      <span class="badge bg-success">Concluída</span>
+      <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-name="tarefas 3" data-task-status="Concluída" data-task-user="Usuário 3" data-task-project="Projeto 3">
+        Editar
+      </button>
+    </li>
+  </ul>
+
+  <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTaskModalLabel">Adicionar Tarefa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="taskForm">
+            <div class="mb-3">
+              <label for="taskNameInput" class="form-label">Nome da Tarefa</label>
+              <input type="text" class="form-control" id="taskNameInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="statusSelect" class="form-label">Status</label>
+              <select class="form-select" id="statusSelect">
+                <option value="Concluída">Concluída</option>
+                <option value="Em Progresso">Em Progresso</option>
+                <option value="Pendente">Pendente</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="userSelect" class="form-label">Usuário Atribuído</label>
+              <select class="form-select" id="userSelect">
+                <option value="Usuário 1">Usuário 1</option>
+                <option value="Usuário 2">Usuário 2</option>
+                <option value="Usuário 3">Usuário 3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="projectSelect" class="form-label">Projeto</label>
+              <select class="form-select" id="projectSelect">
+                <option value="Projeto 1">Projeto 1</option>
+                <option value="Projeto 2">Projeto 2</option>
+                <option value="Projeto 3">Projeto 3</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editTaskModalLabel">Editar Tarefa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editTaskForm">
+            <input type="hidden" id="editTaskName">
+            <div class="mb-3">
+              <label for="editStatusSelect" class="form-label">Status</label>
+              <select class="form-select" id="editStatusSelect">
+                <option value="Concluída">Concluída</option>
+                <option value="Em Progresso">Em Progresso</option>
+                <option value="Pendente">Pendente</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editUserSelect" class="form-label">Usuário Atribuído</label>
+              <select class="form-select" id="editUserSelect">
+                <option value="Usuário 1">Usuário 1</option>
+                <option value="Usuário 2">Usuário 2</option>
+                <option value="Usuário 3">Usuário 3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editProjectSelect" class="form-label">Projeto</label>
+              <select class="form-select" id="editProjectSelect">
+                <option value="Projeto 1">Projeto 1</option>
+                <option value="Projeto 2">Projeto 2</option>
+                <option value="Projeto 3">Projeto 3</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('taskForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var taskNameInput = document.getElementById('taskNameInput');
+    var statusSelect = document.getElementById('statusSelect');
+    var userSelect = document.getElementById('userSelect');
+    var projectSelect = document.getElementById('projectSelect');
+    var taskList = document.getElementById('taskList');
+
+    var newTask = document.createElement('li');
+    newTask.classList.add('list-group-item');
+    newTask.innerHTML = `
+      ${taskNameInput.value}
+      <span class="badge ${getStatusBadgeClass(statusSelect.value)}">${statusSelect.value}</span>
+      <span class="badge bg-primary">${userSelect.value}</span>
+      <span class="badge bg-info">${projectSelect.value}</span>
+      <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal"
+        data-task-name="${taskNameInput.value}" data-task-status="${statusSelect.value}"
+        data-task-user="${userSelect.value}" data-task-project="${projectSelect.value}">
+        Editar
+      </button>
+    `;
+    taskList.appendChild(newTask);
+
+    taskNameInput.value = '';
+    var addTaskModal = new bootstrap.Modal(document.getElementById('addTaskModal'));
+    addTaskModal.hide();
+  });
+
+  document.getElementById('editTaskForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var editTaskName = document.getElementById('editTaskName');
+    var editStatusSelect = document.getElementById('editStatusSelect');
+    var editUserSelect = document.getElementById('editUserSelect');
+    var editProjectSelect = document.getElementById('editProjectSelect');
+    var taskItem = document.querySelector(`li:contains("${editTaskName.value}")`);
+    var taskStatus = taskItem.querySelector('.badge');
+    var taskUser = taskItem.querySelector('.badge.bg-primary');
+    var taskProject = taskItem.querySelector('.badge.bg-info');
+
+    taskStatus.textContent = editStatusSelect.value;
+    taskStatus.classList = `badge ${getStatusBadgeClass(editStatusSelect.value)}`;
+    taskUser.textContent = editUserSelect.value;
+    taskProject.textContent = editProjectSelect.value;
+
+    var editTaskModal = new bootstrap.Modal(document.getElementById('editTaskModal'));
+    editTaskModal.hide();
+  });
+
+  function getStatusBadgeClass(status) {
+    switch (status) {
+      case 'Concluída':
+        return 'bg-success';
+      case 'Em Progresso':
+        return 'bg-warning text-dark';
+      case 'Pendente':
+        return 'bg-secondary';
+      default:
+        return '';
+    }
+  }
+
+  document.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var taskName = button.getAttribute('data-task-name');
+    var taskStatus = button.getAttribute('data-task-status');
+    var taskUser = button.getAttribute('data-task-user');
+    var taskProject = button.getAttribute('data-task-project');
+    var modal = document.getElementById(event.target.id);
+    var editTaskName = modal.querySelector('#editTaskName');
+    var editStatusSelect = modal.querySelector('#editStatusSelect');
+    var editUserSelect = modal.querySelector('#editUserSelect');
+    var editProjectSelect = modal.querySelector('#editProjectSelect');
+
+    editTaskName.value = taskName;
+    editStatusSelect.value = taskStatus;
+    editUserSelect.value = taskUser;
+    editProjectSelect.value = taskProject;
+  });
+</script>
+
+      </main>
+    </div>
+  </div>
+
+
+  <script src="https://gtp.webkasp.com.br/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"
+    integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+
+  <script src="https://gtp.webkasp.com.br/js/dashboard.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/jquery.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/script.js"></script>
+
+
+
+</body>
+
+</html>

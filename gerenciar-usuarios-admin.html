@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <title>Gerenciador GTP</title>
+  <link href="https://gtp.webkasp.com.br/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://gtp.webkasp.com.br/css/contador.css">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .position-sticky.pt-3.sidebar-sticky img {
+      margin-bottom: 30px;
+      padding: 0 30px;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="https://gtp.webkasp.com.br/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="dashboard.html">Admin</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Pesquisar"
+      aria-label="Search">
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="index.html">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <img src="img/logo-gpt.png" width="100%" margin="auto" alt="Conectar com o Google">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <h3>
+                <a class="nav-link active" aria-current="page" href="dashboard-admin.html">
+                  Dashboard
+                </a>
+              </h3>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projetos-admin.html" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-file align-text-bottom" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="visualizador-de-projetos-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Projetos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="visualizar-tarefas-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2 align-text-bottom" aria-hidden="true">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Visualizar Tarefas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="gerenciar-usuarios-admin.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users align-text-bottom" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Gerenciador Usuários
+              </a>
+            </li>
+
+            
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/css/bootstrap.min.css">
+  <title>Gerenciamento de Usuários</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gerenciamento de Usuários</h1>
+
+    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#userModal">
+      Adicionar Usuário
+    </button>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome de Usuário</th>
+          <th>Email</th>
+          <th>Nível de Usuário</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Usuário 1</td>
+          <td>usuario1@example.com</td>
+          <td>Admin</td>
+          <td>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#userModal"
+              data-user-id="1" data-user-name="Usuário 1" data-user-email="usuario1@example.com" data-user-level="Admin">
+              Editar
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
+              data-user-id="1">
+              Excluir
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Usuário 2</td>
+          <td>usuario2@example.com</td>
+          <td>Usuário</td>
+          <td>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#userModal"
+              data-user-id="2" data-user-name="Usuário 2" data-user-email="usuario2@example.com" data-user-level="Usuário">
+              Editar
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
+              data-user-id="2">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal de Usuário -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">Usuário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <div class="mb-3">
+              <label for="userIdInput" class="form-label">ID</label>
+              <input type="text" class="form-control" id="userIdInput" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="userNameInput" class="form-label">Nome de Usuário</label>
+              <input type="text" class="form-control" id="userNameInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="userLevelSelect" class="form-label">Nível de Usuário</label>
+              <select class="form-select" id="userLevelSelect">
+                <option value="Root">Root</option>
+                <option value="Admin">Admin</option>
+                <option value="Usuário">Usuário</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Exclusão de Usuário -->
+  <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteUserModalLabel">Excluir Usuário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Deseja realmente excluir este usuário?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteUserBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Obter referências aos elementos do modal de usuário
+    const userModal = document.getElementById('userModal');
+    const userForm = document.getElementById('userForm');
+    const userIdInput = document.getElementById('userIdInput');
+    const userNameInput = document.getElementById('userNameInput');
+    const emailInput = document.getElementById('emailInput');
+    const userLevelSelect = document.getElementById('userLevelSelect');
+
+    // Obter referências aos elementos do modal de exclusão de usuário
+    const deleteUserModal = document.getElementById('deleteUserModal');
+    const confirmDeleteUserBtn = document.getElementById('confirmDeleteUserBtn');
+
+    // Evento de abertura do modal de usuário
+    userModal.addEventListener('show.bs.modal', function (event) {
+      // Verificar se o modal foi acionado por um botão de edição
+      const button = event.relatedTarget;
+      if (button) {
+        // Obter os dados do usuário a ser editado
+        const userId = button.getAttribute('data-user-id');
+        const userName = button.getAttribute('data-user-name');
+        const userEmail = button.getAttribute('data-user-email');
+        const userLevel = button.getAttribute('data-user-level');
+
+        // Preencher os campos do formulário com os dados do usuário
+        userIdInput.value = userId;
+        userNameInput.value = userName;
+        emailInput.value = userEmail;
+        userLevelSelect.value = userLevel;
+      } else {
+        // Limpar os campos do formulário para adicionar um novo usuário
+        userForm.reset();
+      }
+    });
+
+    // Evento de submissão do formulário de usuário
+    userForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Obter os valores dos campos do formulário
+      const userId = userIdInput.value;
+      const userName = userNameInput.value;
+      const userEmail = emailInput.value;
+      const userLevel = userLevelSelect.value;
+
+      // Realizar as ações necessárias, como salvar os dados no backend
+
+      // Fechar o modal
+      const bootstrapModal = bootstrap.Modal.getInstance(userModal);
+      bootstrapModal.hide();
+    });
+
+    // Evento de abertura do modal de exclusão de usuário
+    deleteUserModal.addEventListener('show.bs.modal', function (event) {
+      // Obter o ID do usuário a ser excluído
+      const button = event.relatedTarget;
+      const userId = button.getAttribute('data-user-id');
+
+      // Atribuir o ID do usuário ao botão de confirmação de exclusão
+      confirmDeleteUserBtn.setAttribute('data-user-id', userId);
+    });
+
+    // Evento de confirmação de exclusão de usuário
+    confirmDeleteUserBtn.addEventListener('click', function () {
+      // Obter o ID do usuário a ser excluído
+      const userId = confirmDeleteUserBtn.getAttribute('data-user-id');
+
+      // Realizar as ações necessárias, como excluir o usuário do backend
+
+      // Fechar o modal
+      const bootstrapModal = bootstrap.Modal.getInstance(deleteUserModal);
+      bootstrapModal.hide();
+    });
+  </script>
+</body>
+
+</html>
+
+
+      </main>
+    </div>
+  </div>
+
+
+  <script src="https://gtp.webkasp.com.br/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"
+    integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+
+  <script src="https://gtp.webkasp.com.br/js/dashboard.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/jquery.js"></script>
+  <script src="https://gtp.webkasp.com.br/js/script.js"></script>
+
+
+
+</body>
+
+</html>
